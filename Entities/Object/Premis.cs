@@ -2,6 +2,5 @@
 {
     public class Premis : EstateObject
     {
-        public int Id { get; set; }
     }
 }

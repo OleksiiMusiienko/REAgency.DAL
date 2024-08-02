@@ -2,6 +2,5 @@
 {
     public class Storage : EstateObject
     {
-        public int Id { get; set; }
     }
 }

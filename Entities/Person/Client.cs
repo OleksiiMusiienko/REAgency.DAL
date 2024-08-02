@@ -1,9 +1,7 @@
 ﻿namespace REAgency.DAL.Entities.Person
 {
     public class Client : Person
-    {
-        public int Id { get; set; }
-        
+    {        
         public virtual Operation Operation { get; set; }
         public int operationId { get; set; }
 

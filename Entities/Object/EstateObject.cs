@@ -5,6 +5,7 @@ namespace REAgency.DAL.Entities.Object
 {
     public class EstateObject //Это не таблица в БД, это своего рода шаблон для других классов
     {
+        public int Id { get; set; }
         public int countViews { get; set; }
 
         public virtual EstateType EstateType { get; set; }

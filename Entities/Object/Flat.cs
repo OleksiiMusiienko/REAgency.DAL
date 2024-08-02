@@ -2,7 +2,6 @@
 {
     public class Flat : EstateObject // Это будет таблица в БД
     {
-        public int Id { get; set; }
 
         public int Floor { get; set; }
         public int Floors { get; set; }
