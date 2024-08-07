@@ -42,7 +42,12 @@ namespace REAgency.DAL.Repositories.PersonRepository
             Client? client = clients?.FirstOrDefault();
             return client;
         }
-
+        public async Task<Client> GetByEmail(string email)
+        {
+            var clients = await db.Clients.Where(a => a.Email == email).ToListAsync();
+            Client? client = clients?.FirstOrDefault();
+            return client;
+        }
         public async Task Create(Client client)
         {
             await db.Clients.AddAsync(client);
