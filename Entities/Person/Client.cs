@@ -6,7 +6,7 @@
         public int operationId { get; set; }
 
         public virtual Employee Employee { get; set; }
-        public int employeeId { get; set; }
+        public int? employeeId { get; set; }
 
         public bool status { get; set; }
 

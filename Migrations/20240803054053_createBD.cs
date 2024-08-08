@@ -188,7 +188,7 @@ namespace REAgency.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     operationId = table.Column<int>(type: "int", nullable: false),
-                    employeeId = table.Column<int>(type: "int", nullable: false),
+                    employeeId = table.Column<int>(type: "int", nullable: true),
                     status = table.Column<bool>(type: "bit", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salt = table.Column<string>(type: "nvarchar(max)", nullable: true),
