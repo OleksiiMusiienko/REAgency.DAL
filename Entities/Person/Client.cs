@@ -3,7 +3,7 @@
     public class Client : Person
     {        
         public virtual Operation Operation { get; set; }
-        public int operationId { get; set; }
+        public int? operationId { get; set; }
 
         public virtual Employee Employee { get; set; }
         public int? employeeId { get; set; }
