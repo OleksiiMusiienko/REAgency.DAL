@@ -16,5 +16,7 @@ namespace REAgency.DAL.Interfaces
 
         Task<Employee> GetByName(string name); // получение сотрудника по имени
 
+        Task<Employee> GetByEmail(string email);
+
     }
 }

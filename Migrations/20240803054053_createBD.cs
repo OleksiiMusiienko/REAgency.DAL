@@ -116,7 +116,7 @@ namespace REAgency.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true),//временно сменил на тру, для теста входа
                     Phone2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     dateReg = table.Column<DateTime>(type: "datetime2", nullable: false),
                     adminStatus = table.Column<bool>(type: "bit", nullable: false),
