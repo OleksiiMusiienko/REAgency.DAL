@@ -33,6 +33,14 @@ namespace REAgency.DAL.Repositories.PersonRepository
             return employee;
         }
 
+        public async Task<Employee> GetByEmail(string email)
+        {
+            //Client client = await db.Clients.FirstOrDefaultAsync(e => e.Email == email);
+            var employees = await db.Employees.Where(a => a.Email == email).ToListAsync();
+            Employee? employee = employees?.FirstOrDefault();
+            return employee;
+        }
+
         public async Task Create(Employee employee)
         {
             await db.Employees.AddAsync(employee);

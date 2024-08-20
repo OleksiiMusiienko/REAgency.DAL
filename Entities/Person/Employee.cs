@@ -6,7 +6,7 @@ namespace REAgency.DAL.Entities.Person
     {
         public string Password { get; set; }
         public string Salt { get; set; }
-        public byte[] Avatar { get; set; }
+        public byte[]? Avatar { get; set; }
         public string? Phone2 { get; set; }
         public DateTime dateReg { get; set; }
 
