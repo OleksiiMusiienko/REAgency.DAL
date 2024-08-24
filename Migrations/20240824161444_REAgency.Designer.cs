@@ -12,8 +12,8 @@ using REAgency.DAL.EF;
 namespace REAgency.DAL.Migrations
 {
     [DbContext(typeof(REAgencyContext))]
-    [Migration("20240803054053_createBD")]
-    partial class createBD
+    [Migration("20240824161444_REAgency")]
+    partial class REAgency
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -354,10 +354,10 @@ namespace REAgency.DAL.Migrations
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("employeeId")
+                    b.Property<int?>("employeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("operationId")
+                    b.Property<int?>("operationId")
                         .HasColumnType("int");
 
                     b.Property<bool>("status")
@@ -384,7 +384,6 @@ namespace REAgency.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<byte[]>("Avatar")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<DateOnly?>("DateOfBirth")
@@ -711,15 +710,11 @@ namespace REAgency.DAL.Migrations
                 {
                     b.HasOne("REAgency.DAL.Entities.Person.Employee", "Employee")
                         .WithMany("Clients")
-                        .HasForeignKey("employeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("employeeId");
 
                     b.HasOne("REAgency.DAL.Entities.Operation", "Operation")
                         .WithMany()
-                        .HasForeignKey("operationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("operationId");
 
                     b.Navigation("Employee");
 

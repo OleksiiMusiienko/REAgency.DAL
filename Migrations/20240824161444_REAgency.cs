@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace REAgency.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class createBD : Migration
+    public partial class REAgency : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -116,7 +116,7 @@ namespace REAgency.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true),//временно сменил на тру, для теста входа
+                    Avatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Phone2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     dateReg = table.Column<DateTime>(type: "datetime2", nullable: false),
                     adminStatus = table.Column<bool>(type: "bit", nullable: false),
@@ -205,14 +205,12 @@ namespace REAgency.DAL.Migrations
                         name: "FK_Clients_Employees_employeeId",
                         column: x => x.employeeId,
                         principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Clients_Operations_operationId",
                         column: x => x.operationId,
                         principalTable: "Operations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
