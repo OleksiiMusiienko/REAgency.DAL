@@ -3,6 +3,7 @@
     public interface IRepositoryObject<T> where T : class
     {
         Task<IEnumerable<T>> GetAll();
+        Task <IEnumerable<T>> GetAllByType(int id);
         Task<IEnumerable<T>> GetAllByEmployee(int id);
         Task<T> Get(int id);
         Task Create(T item);

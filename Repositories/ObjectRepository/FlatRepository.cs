@@ -23,7 +23,15 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             var flets = await db.Flats.Where(f => f.employeeId == id).ToListAsync();
             return flets;
         }
-        public async Task<Flat> Get(int id)
+
+
+        public async Task<IEnumerable<Flat>> GetAllByType(int id)
+        {
+            var flets = await db.Flats.Where(f => f.estateTypeId == id).ToListAsync(); //это не работает
+            return flets;
+        }
+
+        public async Task<Flat> Get(int id)     
         {
             Flat? fl = await db.Flats.FindAsync(id);
             return fl!;
