@@ -50,7 +50,14 @@ namespace REAgency.DAL.Repositories.PersonRepository
         {
             db.Entry(employee).State = EntityState.Modified;
         }
+        public void UpdatePassword(Employee employee)
+        {
+            var employees = db.Employees.SingleOrDefault(x => x.Id == employee.Id);
+            employees.Password = employee.Password;
+            employees.Salt = employee.Salt;
 
+            db.SaveChanges();
+        }
         public async Task Delete(int id)
         {
             Employee? employee = await db.Employees.FindAsync(id);
