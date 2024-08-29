@@ -22,6 +22,12 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             var parkings = await db.Parkings.Where(f => f.employeeId == id).ToListAsync();
             return parkings!;
         }
+
+        public async Task<IEnumerable<Parking>> GetAllByType(int id)
+        {
+            var parkings = await db.Parkings.Where(p => p.estateTypeId == id).ToListAsync();
+            return parkings;
+        }
         public async Task<Parking> Get(int id)
         {
             Parking? pr = await db.Parkings.FindAsync(id);

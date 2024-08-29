@@ -24,7 +24,7 @@ namespace REAgency.DAL.Repositories.OtherRepository
         }
         public async Task<EstateType> GetByName(string name)
         {
-            EstateType? estateType = await db.EstateTypes.FindAsync(name);
+            EstateType? estateType = await db.EstateTypes.FirstOrDefaultAsync(e => e.Name == name);
             return estateType!;
         }
     }

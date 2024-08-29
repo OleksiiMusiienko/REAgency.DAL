@@ -22,6 +22,11 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             var rooms = await db.Rooms.Where(f => f.employeeId == id).ToListAsync();
             return rooms!;
         }
+        public async Task<IEnumerable<Room>> GetAllByType(int id)
+        {
+            var room = await db.Rooms.Where(r => r.estateTypeId == id).ToListAsync();
+            return room;
+        }
         public async Task<Room> Get(int id)
         {
             Room? rm = await db.Rooms.FindAsync(id);

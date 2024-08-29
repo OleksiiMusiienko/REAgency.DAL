@@ -22,6 +22,11 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             var of = await db.Offices.Where(f => f.employeeId == id).ToListAsync();
             return of!;
         }
+        public async Task<IEnumerable<Office>> GetAllByType(int id)
+        {
+            var officies = await db.Offices.Where(o => o.estateTypeId == id).ToListAsync();
+            return officies;
+        }
         public async Task<Office> Get(int id)
         {
             Office? of = await db.Offices.FindAsync(id);

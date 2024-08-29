@@ -22,6 +22,12 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             var prms = await db.Premises.Where(f => f.employeeId == id).ToListAsync();
             return prms!;
         }
+
+        public async Task<IEnumerable<Premis>> GetAllByType(int id)
+        {
+            //var premi1s = await db.Premises.Where(p => p.premiseId == id).ToListAsync();
+            return null;
+        }
         public async Task<Premis> Get(int id)
         {
             Premis? prms = await db.Premises.FindAsync(id);

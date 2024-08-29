@@ -22,6 +22,11 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             var stor = await db.Storages.Where(f => f.employeeId == id).ToListAsync();
             return stor!;
         }
+        public async Task<IEnumerable<Storage>> GetAllByType(int id)
+        {
+            var storages = await db.Storages.Where(s => s.estateTypeId == id).ToListAsync();
+            return storages;
+        }
         public async Task<Storage> Get(int id)
         {
             Storage? stor = await db.Storages.FindAsync(id);
