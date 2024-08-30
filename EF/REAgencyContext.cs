@@ -16,6 +16,7 @@ namespace REAgency.DAL.EF
         public DbSet<Post> Posts { get; set; }
         //real estate objects
 
+        public DbSet<EstateObject> EstateObjects { get; set; }
         public DbSet<Flat> Flats { get; set; }
         public DbSet<Garage> Garages { get; set; }
         public DbSet<House> Houses { get; set; }
@@ -34,7 +35,7 @@ namespace REAgency.DAL.EF
 
         public DbSet<Area> Areas { get; set; }
         public DbSet<Currency> Currencies { get; set; }
-        public DbSet<EstateType> EstateTypes { get; set; }
+        //public DbSet<EstateType> EstateTypes { get; set; }
         public DbSet<Operation> Operations { get; set; }
         public DbSet<Article> Articles { get; set; }
         public REAgencyContext(DbContextOptions<REAgencyContext> options)
