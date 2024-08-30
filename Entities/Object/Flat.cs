@@ -1,7 +1,11 @@
 ﻿namespace REAgency.DAL.Entities.Object
 {
-    public class Flat : EstateObject // Это будет таблица в БД
+    public class Flat  // Это будет таблица в БД
     {
+        public int Id { get; set; }
+
+        public virtual EstateObject estateObject { get; set; }
+        public int? estateObjectId { get; set; }
 
         public int Floor { get; set; }
         public int Floors { get; set; }

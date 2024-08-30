@@ -3,14 +3,10 @@ using REAgency.DAL.Entities.Person;
 
 namespace REAgency.DAL.Entities.Object
 {
-    public class EstateObject //Это не таблица в БД, это своего рода шаблон для других классов
+    public class EstateObject 
     {
         public int Id { get; set; }
         public int countViews { get; set; }
-
-        public virtual EstateType EstateType { get; set; }
-        public int? estateTypeId { get; set; }
-
         public virtual Client Client {  get; set; }
         public int? clientId { get; set; }
 
@@ -37,5 +33,16 @@ namespace REAgency.DAL.Entities.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string? pathPhoto {  get; set; }
+
+        public virtual ICollection<Flat> Flats { get; set; }
+        public virtual ICollection<Garage> Garages { get; set; }
+        public virtual ICollection<House> Houses { get; set; }
+        public virtual ICollection<Office> Offices { get; set; }
+        public virtual ICollection<Parking> Parkings { get; set; }
+        public virtual ICollection<Premis> Premises { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Stead> Steads { get; set; }
+        public virtual ICollection<Storage> Storages { get; set; }
+        
     }
 }
