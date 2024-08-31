@@ -15,22 +15,12 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<Premis>> GetAll()
         {
-            return await db.Premises.ToListAsync();
-        }
-        public async Task<IEnumerable<Premis>> GetAllByEmployee(int id)
-        {
-            var prms = await db.Premises.Where(f => f.employeeId == id).ToListAsync();
-            return prms!;
-        }
-
-        public async Task<IEnumerable<Premis>> GetAllByType(int id)
-        {
-            //var premi1s = await db.Premises.Where(p => p.premiseId == id).ToListAsync();
-            return null;
+            return await db.Premises.Include(o => o.estateObject).ToListAsync();
         }
         public async Task<Premis> Get(int id)
         {
-            Premis? prms = await db.Premises.FindAsync(id);
+            var premises = await db.Premises.Include(o => o.estateObject).Where(a => a.Id == id).ToListAsync();
+            Premis? prms = premises.FirstOrDefault();
             return prms!;
         }
         public async Task Create(Premis prms)

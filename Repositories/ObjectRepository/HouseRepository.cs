@@ -15,22 +15,13 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<House>> GetAll()
         {
-            return await db.Houses.ToListAsync();
+            return await db.Houses.Include(o => o.estateObject).ToListAsync();
         }
-        public async Task<IEnumerable<House>> GetAllByEmployee(int id)
-        {
-            var houses = await db.Houses.Where(f => f.employeeId == id).ToListAsync();
-            return houses;
-        }
-
-        public async Task<IEnumerable<House>> GetAllByType(int id)
-        {
-            var houses = await db.Houses.Where(h => h.estateTypeId == id).ToListAsync();
-            return houses;
-        }
+        
         public async Task<House> Get(int id)
         {
-            House? hs = await db.Houses.FindAsync(id);
+            var houses = await db.Houses.Include(o => o.estateObject).Where(a => a.Id == id).ToListAsync();
+            House? hs = houses.FirstOrDefault();
             return hs!;
         }
         public async Task Create(House hs)

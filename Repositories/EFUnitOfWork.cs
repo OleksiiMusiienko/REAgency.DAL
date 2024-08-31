@@ -36,7 +36,7 @@ namespace REAgency.DAL.Repositories
         private ArticleRepository articleRepository;
         private AreaRepository areaRepository;
         private CurrencyRepository currencyRepository;
-        private EstateTypeRepository estateTypeRepository;
+        //private EstateTypeRepository estateTypeRepository;
         private OperationRepository operationRepository;
         private PostRepository postRepository;
 
@@ -225,15 +225,15 @@ namespace REAgency.DAL.Repositories
                 return currencyRepository;
             }
         }
-        public IElseEntities<EstateType> EstateTypes
-        {
-            get
-            {
-                if(estateTypeRepository == null)
-                    estateTypeRepository = new EstateTypeRepository(db);
-                return estateTypeRepository;
-            }
-        }
+        //public IElseEntities<EstateType> EstateTypes
+        //{
+        //    get
+        //    {
+        //        if(estateTypeRepository == null)
+        //            estateTypeRepository = new EstateTypeRepository(db);
+        //        return estateTypeRepository;
+        //    }
+        //}
         public IElseEntities<Operation> Operations
         {
             get

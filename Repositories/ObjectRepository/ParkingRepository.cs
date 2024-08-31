@@ -15,22 +15,13 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<Parking>> GetAll()
         {
-            return await db.Parkings.ToListAsync();
+            return await db.Parkings.Include(o => o.estateObject).ToListAsync();
         }
-        public async Task<IEnumerable<Parking>> GetAllByEmployee(int id)
-        {
-            var parkings = await db.Parkings.Where(f => f.employeeId == id).ToListAsync();
-            return parkings!;
-        }
-
-        public async Task<IEnumerable<Parking>> GetAllByType(int id)
-        {
-            var parkings = await db.Parkings.Where(p => p.estateTypeId == id).ToListAsync();
-            return parkings;
-        }
+        
         public async Task<Parking> Get(int id)
         {
-            Parking? pr = await db.Parkings.FindAsync(id);
+            var parkings = await db.Parkings.Include(o => o.estateObject).Where(a => a.Id == id).ToListAsync();
+            Parking? pr = parkings.FirstOrDefault();
             return pr!;
         }
         public async Task Create(Parking pr)

@@ -2,6 +2,7 @@
 using REAgency.DAL.EF;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
+using System.Numerics;
 
 
 namespace REAgency.DAL.Repositories.ObjectRepository
@@ -16,24 +17,13 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<Flat>> GetAll()
         {
-            return await db.Flats.ToListAsync();
-        }
-        public async Task<IEnumerable<Flat>> GetAllByEmployee(int id)
-        {
-            var flets = await db.Flats.Where(f => f.employeeId == id).ToListAsync();
-            return flets;
-        }
-
-
-        public async Task<IEnumerable<Flat>> GetAllByType(int id)
-        {
-            var flets = await db.Flats.Where(f => f.estateTypeId == id).ToListAsync(); //это не работает
-            return flets;
+            return await db.Flats.Include(o => o.estateObject).ToListAsync();
         }
 
         public async Task<Flat> Get(int id)     
         {
-            Flat? fl = await db.Flats.FindAsync(id);
+            var flats = await db.Flats.Include(o => o.estateObject).Where(a => a.Id == id).ToListAsync();
+            Flat? fl = flats?.FirstOrDefault();
             return fl!;
         }
         public async Task Create(Flat fl)
