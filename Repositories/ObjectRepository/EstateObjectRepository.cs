@@ -5,8 +5,8 @@ using REAgency.DAL.Interfaces;
 
 namespace REAgency.DAL.Repositories.ObjectRepository
 {
-    public class EstateObjectRepository : IRepositoryObject<EstateObject>
-    {
+    public class EstateObjectRepository : IEstateObject
+    { 
         private REAgencyContext db;
 
         public EstateObjectRepository(REAgencyContext context)
@@ -17,17 +17,18 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             return await db.EstateObjects.ToListAsync();
         }
-        public async Task<IEnumerable<EstateObject>> GetAllByEmployee(int id)
-        {
-            var estateObjects = await db.EstateObjects.Where(f => f.employeeId == id).ToListAsync();
-            return estateObjects;
-        }
-
         public async Task<EstateObject> Get(int id)
         {
             EstateObject? obj = await db.EstateObjects.FindAsync(id);
             return obj!;
         }
+        public async Task<IEnumerable<EstateObject>> GetAllByEmployeeId(int id)
+        {
+            var estateObjects = await db.EstateObjects.Where(f => f.employeeId == id).ToListAsync();
+            return estateObjects;
+        }
+
+        
         public async Task Create(EstateObject obj)
         {
             await db.EstateObjects.AddAsync(obj);
