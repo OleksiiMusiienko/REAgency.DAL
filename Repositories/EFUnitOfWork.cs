@@ -39,6 +39,7 @@ namespace REAgency.DAL.Repositories
         //private EstateTypeRepository estateTypeRepository;
         private OperationRepository operationRepository;
         private PostRepository postRepository;
+        private EstateObjectRepository estateObjectRepository;
 
         public EFUnitOfWork(REAgencyContext context)
         {
@@ -252,7 +253,16 @@ namespace REAgency.DAL.Repositories
                 return postRepository;
             }
         }
-        
+        public IEstateObject EstateObjects
+        {
+            get
+            {
+                if (estateObjectRepository == null)
+                    estateObjectRepository = new EstateObjectRepository(db);
+                return estateObjectRepository;
+            }
+        }
+
 
         public async Task Save()
         {

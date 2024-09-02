@@ -29,7 +29,7 @@ namespace REAgency.DAL.Interfaces
         IRepositoryObject<Stead> Steads { get; }
         IRepositoryObject<Storage> Storeges { get; }
 
-        IEstateObject EstateObject { get; }
+        IEstateObject EstateObjects { get; }
 
         //other methods
         IElseEntities<Area> Areas { get; }
