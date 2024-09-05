@@ -1,4 +1,5 @@
-﻿using REAgency.DAL.Entities.Locations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using REAgency.DAL.Entities.Locations;
 using REAgency.DAL.Entities.Person;
 
 namespace REAgency.DAL.Entities.Object
@@ -8,6 +9,7 @@ namespace REAgency.DAL.Entities.Object
         public int Id { get; set; }
         public int countViews { get; set; }
         public virtual Client Client {  get; set; }
+      
         public int clientId { get; set; }
 
         public virtual Employee Employee { get; set; }
@@ -34,7 +36,7 @@ namespace REAgency.DAL.Entities.Object
         public DateTime Date { get; set; }
         public string pathPhoto {  get; set; }
 
-        public virtual ICollection<Flat> Flats { get; set; }
+        //public virtual ICollection<Flat> Flats { get; set; }
         public virtual ICollection<Garage> Garages { get; set; }
         public virtual ICollection<House> Houses { get; set; }
         public virtual ICollection<Office> Offices { get; set; }

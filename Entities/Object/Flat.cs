@@ -1,4 +1,6 @@
-﻿namespace REAgency.DAL.Entities.Object
+﻿using REAgency.DAL.Entities.Person;
+
+namespace REAgency.DAL.Entities.Object
 {
     public class Flat  // Это будет таблица в БД
     {
