@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace REAgency.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class migrations : Migration
+    public partial class createDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,6 +61,23 @@ namespace REAgency.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Operations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    orderClient = table.Column<int>(type: "int", nullable: false),
+                    idObject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    idClient = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -262,20 +279,20 @@ namespace REAgency.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     countViews = table.Column<int>(type: "int", nullable: false),
-                    clientId = table.Column<int>(type: "int", nullable: true),
-                    employeeId = table.Column<int>(type: "int", nullable: true),
-                    operationId = table.Column<int>(type: "int", nullable: true),
-                    locationId = table.Column<int>(type: "int", nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    numberStreet = table.Column<int>(type: "int", nullable: true),
+                    clientId = table.Column<int>(type: "int", nullable: false),
+                    employeeId = table.Column<int>(type: "int", nullable: false),
+                    operationId = table.Column<int>(type: "int", nullable: false),
+                    locationId = table.Column<int>(type: "int", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    numberStreet = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    currencyId = table.Column<int>(type: "int", nullable: true),
+                    currencyId = table.Column<int>(type: "int", nullable: false),
                     Area = table.Column<double>(type: "float", nullable: false),
-                    unitAreaId = table.Column<int>(type: "int", nullable: true),
+                    unitAreaId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    pathPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    pathPhoto = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -284,32 +301,38 @@ namespace REAgency.DAL.Migrations
                         name: "FK_EstateObjects_Areas_unitAreaId",
                         column: x => x.unitAreaId,
                         principalTable: "Areas",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EstateObjects_Clients_clientId",
                         column: x => x.clientId,
                         principalTable: "Clients",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EstateObjects_Currencies_currencyId",
                         column: x => x.currencyId,
                         principalTable: "Currencies",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EstateObjects_Employees_employeeId",
                         column: x => x.employeeId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EstateObjects_Locations_locationId",
                         column: x => x.locationId,
                         principalTable: "Locations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EstateObjects_Operations_operationId",
                         column: x => x.operationId,
                         principalTable: "Operations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -638,6 +661,9 @@ namespace REAgency.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Offices");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Parkings");

@@ -229,33 +229,35 @@ namespace REAgency.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("clientId")
+                    b.Property<int>("clientId")
                         .HasColumnType("int");
 
                     b.Property<int>("countViews")
                         .HasColumnType("int");
 
-                    b.Property<int?>("currencyId")
+                    b.Property<int>("currencyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("employeeId")
+                    b.Property<int>("employeeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("locationId")
+                    b.Property<int>("locationId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("numberStreet")
+                    b.Property<int>("numberStreet")
                         .HasColumnType("int");
 
-                    b.Property<int?>("operationId")
+                    b.Property<int>("operationId")
                         .HasColumnType("int");
 
                     b.Property<string>("pathPhoto")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("unitAreaId")
+                    b.Property<int>("unitAreaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -503,6 +505,34 @@ namespace REAgency.DAL.Migrations
                     b.ToTable("Operations");
                 });
 
+            modelBuilder.Entity("REAgency.DAL.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("idClient")
+                        .HasColumnType("int");
+
+                    b.Property<string>("idObject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("orderClient")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("REAgency.DAL.Entities.Person.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -697,27 +727,39 @@ namespace REAgency.DAL.Migrations
                 {
                     b.HasOne("REAgency.DAL.Entities.Person.Client", "Client")
                         .WithMany()
-                        .HasForeignKey("clientId");
+                        .HasForeignKey("clientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("REAgency.DAL.Entities.Currency", "Currency")
                         .WithMany()
-                        .HasForeignKey("currencyId");
+                        .HasForeignKey("currencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("REAgency.DAL.Entities.Person.Employee", "Employee")
                         .WithMany("EstateObjects")
-                        .HasForeignKey("employeeId");
+                        .HasForeignKey("employeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("REAgency.DAL.Entities.Locations.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("locationId");
+                        .HasForeignKey("locationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("REAgency.DAL.Entities.Operation", "Operation")
                         .WithMany()
-                        .HasForeignKey("operationId");
+                        .HasForeignKey("operationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("REAgency.DAL.Entities.Area", "unitArea")
                         .WithMany()
-                        .HasForeignKey("unitAreaId");
+                        .HasForeignKey("unitAreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
 
@@ -735,7 +777,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Flat", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Flats")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -856,8 +898,6 @@ namespace REAgency.DAL.Migrations
 
             modelBuilder.Entity("REAgency.DAL.Entities.Object.EstateObject", b =>
                 {
-                    b.Navigation("Flats");
-
                     b.Navigation("Garages");
 
                     b.Navigation("Houses");

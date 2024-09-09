@@ -38,6 +38,7 @@ namespace REAgency.DAL.EF
         //public DbSet<EstateType> EstateTypes { get; set; }
         public DbSet<Operation> Operations { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public REAgencyContext(DbContextOptions<REAgencyContext> options)
                    : base(options)
         {
