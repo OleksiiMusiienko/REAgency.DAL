@@ -12,7 +12,7 @@ using REAgency.DAL.EF;
 namespace REAgency.DAL.Migrations
 {
     [DbContext(typeof(REAgencyContext))]
-    [Migration("20240909045423_createDB")]
+    [Migration("20240911103338_createDB")]
     partial class createDB
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace REAgency.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -245,6 +245,9 @@ namespace REAgency.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("employeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("estateType")
                         .HasColumnType("int");
 
                     b.Property<int>("locationId")

@@ -17,7 +17,7 @@ namespace REAgency.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -242,6 +242,9 @@ namespace REAgency.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("employeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("estateType")
                         .HasColumnType("int");
 
                     b.Property<int>("locationId")
