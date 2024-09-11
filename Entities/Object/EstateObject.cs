@@ -6,6 +6,10 @@ namespace REAgency.DAL.Entities.Object
 {
     public class EstateObject 
     {
+        public enum ObjectType
+        {
+            Flat, Garage, House, Office, Parking, Premis, Room, Stead, Storage
+        }
         public int Id { get; set; }
         public int countViews { get; set; }
         public virtual Client Client {  get; set; }
@@ -35,6 +39,8 @@ namespace REAgency.DAL.Entities.Object
         public bool Status { get; set; }
         public DateTime Date { get; set; }
         public string pathPhoto {  get; set; }
+
+        public ObjectType estateType {  get; set; }
 
         //public virtual ICollection<Flat> Flats { get; set; }
         public virtual ICollection<Garage> Garages { get; set; }
