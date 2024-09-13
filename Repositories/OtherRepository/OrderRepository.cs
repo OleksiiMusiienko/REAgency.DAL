@@ -2,11 +2,6 @@
 using REAgency.DAL.EF;
 using REAgency.DAL.Entities;
 using REAgency.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace REAgency.DAL.Repositories.OtherRepository
 {
@@ -24,7 +19,7 @@ namespace REAgency.DAL.Repositories.OtherRepository
             await db.Orders.AddAsync(order);
         }
 
-        public void Update(Order order)
+        public async Task Update(Order order)
         {
             db.Entry(order).State = EntityState.Modified;
         }
@@ -38,14 +33,15 @@ namespace REAgency.DAL.Repositories.OtherRepository
 
         public async Task<Order> Get(int id)
         {
-            var orders = await db.Orders.Where(a => a.Id == id).ToListAsync();
+            var orders = await db.Orders.Include(p=>p.objectsForOrders).Where(a => a.Id == id).ToListAsync();
             Order? order = orders.FirstOrDefault();
             return order!;
         }
 
         public async Task<IEnumerable<Order>> GetAll()
         {
-            return await db.Orders.ToListAsync();
+            var orders = db.Orders.Include(o=>o.objectsForOrders).ToList();
+            return orders; 
         }
     }
 }

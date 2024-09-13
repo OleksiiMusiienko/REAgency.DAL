@@ -35,7 +35,7 @@ namespace REAgency.DAL.Interfaces
         IElseEntities<Area> Areas { get; }
         IElseEntities<Operation> Operations { get; }
         IElseEntities<Currency> Currencies { get; }
-        //IElseEntities<EstateType> EstateTypes { get; }
+        IOrdered Orders { get; }
         IArticle Articles { get; }
         Task Save(); 
     }
