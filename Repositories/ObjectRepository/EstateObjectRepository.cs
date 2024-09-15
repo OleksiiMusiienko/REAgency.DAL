@@ -28,7 +28,23 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             return estateObjects;
         }
 
-        
+        public async Task<IEnumerable<EstateObject>> GetAllByOperationId(int id)
+        {
+            var estateObjects = await db.EstateObjects.Where(f => f.operationId == id).ToListAsync();
+            return estateObjects;
+        }
+
+        public async Task<IEnumerable<EstateObject>> GetAllByLocalityId(int id)
+        {
+            var estateObjects = (from o in db.EstateObjects
+                          join l in db.Locations on o.locationId equals l.Id
+                          where l.LocalityId == id
+                          select o).ToList();
+
+            return estateObjects;
+        }
+
+
         public async Task Create(EstateObject obj)
         {
             await db.EstateObjects.AddAsync(obj);
