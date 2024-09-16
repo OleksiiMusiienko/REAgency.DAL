@@ -44,6 +44,18 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             return estateObjects;
         }
 
+        public async Task<IEnumerable<EstateObject>> GetAllByOperationAndLocalityId(int opId, int localityId)
+        {
+            var estateObjects = (from eo in db.EstateObjects
+                                 join o in db.Operations on eo.operationId equals o.Id
+                                 join l in db.Locations on eo.locationId equals l.Id
+                                 where l.LocalityId == localityId
+                                 where o.Id == opId
+                                 select eo).ToList();
+
+            return estateObjects;
+        }
+
 
         public async Task Create(EstateObject obj)
         {

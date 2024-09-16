@@ -12,7 +12,7 @@ using REAgency.DAL.EF;
 namespace REAgency.DAL.Migrations
 {
     [DbContext(typeof(REAgencyContext))]
-    [Migration("20240915103814_migrations")]
+    [Migration("20240916143138_migrations")]
     partial class migrations
     {
         /// <inheritdoc />

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace REAgency.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class createDB : Migration
+    public partial class migrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,7 +70,6 @@ namespace REAgency.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     orderClient = table.Column<int>(type: "int", nullable: false),
-                    idObject = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     idClient = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -110,6 +109,26 @@ namespace REAgency.DAL.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ObjectsForOrders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    EstateObjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ObjectsForOrders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ObjectsForOrders_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -610,6 +629,11 @@ namespace REAgency.DAL.Migrations
                 column: "RegionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ObjectsForOrders_OrderId",
+                table: "ObjectsForOrders",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Offices_estateObjectId",
                 table: "Offices",
                 column: "estateObjectId");
@@ -661,10 +685,10 @@ namespace REAgency.DAL.Migrations
                 name: "Houses");
 
             migrationBuilder.DropTable(
-                name: "Offices");
+                name: "ObjectsForOrders");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Offices");
 
             migrationBuilder.DropTable(
                 name: "Parkings");
@@ -680,6 +704,9 @@ namespace REAgency.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Storages");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "EstateObjects");
