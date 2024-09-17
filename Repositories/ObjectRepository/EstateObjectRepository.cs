@@ -2,6 +2,7 @@
 using REAgency.DAL.EF;
 using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
+using REAgencyEnum;
 
 namespace REAgency.DAL.Repositories.ObjectRepository
 {
@@ -62,7 +63,53 @@ namespace REAgency.DAL.Repositories.ObjectRepository
 
             return estateObjects;
         }
+        public async Task<IEnumerable<EstateObject>> GetAllByFiltered(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+            int? maxPrice, double? minArea, double? maxArea)
+        {
+            var estateObjects = db.EstateObjects.AsQueryable();  
 
+            
+            if (typeId != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.estateType == (ObjectType)typeId.Value);
+            }
+
+            if (operationTypeId != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.operationId == operationTypeId.Value);
+            }
+            
+            if (localityId != 0)
+            {
+                estateObjects = (from o in db.EstateObjects
+                         join l in db.Locations on o.locationId equals l.Id
+                         where l.LocalityId == localityId
+                         select o);
+            }
+
+            if (minPrice != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Price >= minPrice.Value);
+            }
+
+            if (maxPrice != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Price <= maxPrice.Value);
+            }
+
+            
+            if (minArea != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Area >= minArea.Value);
+            }
+
+            if (maxArea != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Area <= maxArea.Value);
+            }
+
+            return await estateObjects.ToListAsync();
+        }
 
         public async Task Create(EstateObject obj)
         {
