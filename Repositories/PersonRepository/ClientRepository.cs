@@ -49,6 +49,13 @@ namespace REAgency.DAL.Repositories.PersonRepository
             Client? client = clients?.FirstOrDefault();
             return client;
         }
+        public async Task<Client> GetByPhone(string phone)
+        {
+            
+            var clients = await db.Clients.Where(a => a.Phone1 == phone).ToListAsync();
+            Client? client = clients?.FirstOrDefault();
+            return client;
+        }
         public async Task Create(Client client)
         {
             await db.Clients.AddAsync(client);

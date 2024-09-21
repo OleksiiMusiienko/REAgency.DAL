@@ -8,6 +8,7 @@ namespace REAgency.DAL.Interfaces
 
         Task<IEnumerable<Client>> GetAllByEmployee(int id);  //я(Лев) добавил в интерфейс два метода которые реализовывает класс, но они не были в интерфейсе
         Task<IEnumerable<Client>> GetAllByOperation(int opId);
+        Task<Client> GetByPhone(string phone);
         Task Create(Client client); // Регистрация пользователя или добавление пользователя сотрудником
 
         void Update(Client client);
