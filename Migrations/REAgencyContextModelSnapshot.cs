@@ -491,6 +491,27 @@ namespace REAgency.DAL.Migrations
                     b.ToTable("Storages");
                 });
 
+            modelBuilder.Entity("REAgency.DAL.Entities.ObjectsForOrders", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EstateObjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("ObjectsForOrders");
+                });
+
             modelBuilder.Entity("REAgency.DAL.Entities.Operation", b =>
                 {
                     b.Property<int>("Id")
@@ -524,9 +545,6 @@ namespace REAgency.DAL.Migrations
 
                     b.Property<int?>("idClient")
                         .HasColumnType("int");
-
-                    b.Property<string>("idObject")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("orderClient")
                         .HasColumnType("int");
@@ -858,6 +876,17 @@ namespace REAgency.DAL.Migrations
                     b.Navigation("estateObject");
                 });
 
+            modelBuilder.Entity("REAgency.DAL.Entities.ObjectsForOrders", b =>
+                {
+                    b.HasOne("REAgency.DAL.Entities.Order", "Order")
+                        .WithMany("objectsForOrders")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("REAgency.DAL.Entities.Person.Client", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Person.Employee", "Employee")
@@ -916,6 +945,11 @@ namespace REAgency.DAL.Migrations
                     b.Navigation("Steads");
 
                     b.Navigation("Storages");
+                });
+
+            modelBuilder.Entity("REAgency.DAL.Entities.Order", b =>
+                {
+                    b.Navigation("objectsForOrders");
                 });
 
             modelBuilder.Entity("REAgency.DAL.Entities.Person.Employee", b =>

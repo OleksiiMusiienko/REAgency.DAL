@@ -12,6 +12,14 @@ namespace REAgency.DAL.Interfaces
         Task<IEnumerable<EstateObject>> GetAll();
         Task<EstateObject> Get(int id);
         Task<IEnumerable<EstateObject>> GetAllByEmployeeId(int id);
+        Task<IEnumerable<EstateObject>> GetAllByOperationId(int id);
+        Task<IEnumerable<EstateObject>> GetAllByEstateTypeId(int id);
+        Task<IEnumerable<EstateObject>> GetAllByOperationAndLocalityId(int opId, int localityId);
+
+        Task<IEnumerable<EstateObject>> GetAllByFiltered(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+            int? maxPrice, double? minArea, double? maxArea);
+
+        Task<IEnumerable<EstateObject>> GetAllByLocalityId(int id);
         Task Create(EstateObject estateObject);
         void Update(EstateObject estateObject);
         Task Delete(int id);
