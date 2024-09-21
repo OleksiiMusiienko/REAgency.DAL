@@ -2,6 +2,7 @@
 using REAgency.DAL.EF;
 using REAgency.DAL.Entities;
 using REAgency.DAL.Interfaces;
+using System.Numerics;
 
 namespace REAgency.DAL.Repositories.OtherRepository
 {
@@ -24,7 +25,8 @@ namespace REAgency.DAL.Repositories.OtherRepository
         }
         public async Task<Operation> GetByName(string name)
         {
-            Operation? operation = await db.Operations.FindAsync(name);
+            var operations = await db.Operations.Where(a => a.Name == name).ToListAsync();
+            Operation? operation = operations?.FirstOrDefault();
             return operation!;
         }
     }

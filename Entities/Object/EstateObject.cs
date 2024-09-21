@@ -38,14 +38,14 @@ namespace REAgency.DAL.Entities.Object
         public ObjectType estateType {  get; set; }
 
         //public virtual ICollection<Flat> Flats { get; set; }
-        public virtual ICollection<Garage> Garages { get; set; }
-        public virtual ICollection<House> Houses { get; set; }
-        public virtual ICollection<Office> Offices { get; set; }
-        public virtual ICollection<Parking> Parkings { get; set; }
-        public virtual ICollection<Premis> Premises { get; set; }
-        public virtual ICollection<Room> Rooms { get; set; }
-        public virtual ICollection<Stead> Steads { get; set; }
-        public virtual ICollection<Storage> Storages { get; set; }
+        //public virtual ICollection<Garage> Garages { get; set; }
+        //public virtual ICollection<House> Houses { get; set; }
+        //public virtual ICollection<Office> Offices { get; set; }
+        //public virtual ICollection<Parking> Parkings { get; set; }
+        //public virtual ICollection<Premis> Premises { get; set; }
+        //public virtual ICollection<Room> Rooms { get; set; }
+        //public virtual ICollection<Stead> Steads { get; set; }
+        //public virtual ICollection<Storage> Storages { get; set; }
         
     }
 }
