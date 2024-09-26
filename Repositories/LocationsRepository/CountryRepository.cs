@@ -41,5 +41,6 @@ namespace REAgency.DAL.Repositories.LocationsRepository
             if (ctr != null)
                 db.Countries.Remove(ctr);
         }
+        public async Task<Location> GetByDateTime(DateTime date) { return null; }
     }
 }

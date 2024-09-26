@@ -41,5 +41,9 @@ namespace REAgency.DAL.Repositories.LocationsRepository
             if (dist != null)
                 db.Districts.Remove(dist);
         }
+        public async Task<Location> GetByDateTime(DateTime date)
+        {
+            return null;
+        }
     }
 }

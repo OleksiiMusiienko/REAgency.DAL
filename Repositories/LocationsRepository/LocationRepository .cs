@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using REAgency.DAL.EF;
 using REAgency.DAL.Entities.Locations;
+using REAgency.DAL.Entities.Object;
 using REAgency.DAL.Interfaces;
 
 namespace REAgency.DAL.Repositories.LocationsRepository
@@ -40,6 +41,12 @@ namespace REAgency.DAL.Repositories.LocationsRepository
             Location? loc = await db.Locations.FindAsync(id);
             if (loc != null)
                 db.Locations.Remove(loc);
+        }
+        public async Task<Location> GetByDateTime(DateTime date)
+        {
+            var locations = await db.Locations.Where(f => f.Date == date).ToListAsync();
+            Location? location = locations.FirstOrDefault();
+            return location!;
         }
     }
 }
