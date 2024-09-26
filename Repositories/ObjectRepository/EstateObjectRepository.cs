@@ -124,7 +124,10 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async void Update(EstateObject obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
+            
+             db.Entry(obj).State = EntityState.Modified;
+            
+
         }
         public async Task Delete(int id)
         {
