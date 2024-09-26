@@ -20,6 +20,9 @@ namespace REAgency.DAL.Interfaces
             int? maxPrice, double? minArea, double? maxArea);
 
         Task<IEnumerable<EstateObject>> GetAllByLocalityId(int id);
+
+        Task<EstateObject> GetByDateTime(DateTime date);
+        
         Task Create(EstateObject estateObject);
         void Update(EstateObject estateObject);
         Task Delete(int id);

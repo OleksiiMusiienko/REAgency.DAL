@@ -34,18 +34,8 @@ namespace REAgency.DAL.Entities.Object
         public string Description { get; set; }
         public bool Status { get; set; }
         public DateTime Date { get; set; }
-        public string pathPhoto {  get; set; }
+        public string? pathPhoto {  get; set; }
         public ObjectType estateType {  get; set; }
-
-        //public virtual ICollection<Flat> Flats { get; set; }
-        //public virtual ICollection<Garage> Garages { get; set; }
-        //public virtual ICollection<House> Houses { get; set; }
-        //public virtual ICollection<Office> Offices { get; set; }
-        //public virtual ICollection<Parking> Parkings { get; set; }
-        //public virtual ICollection<Premis> Premises { get; set; }
-        //public virtual ICollection<Room> Rooms { get; set; }
-        //public virtual ICollection<Stead> Steads { get; set; }
-        //public virtual ICollection<Storage> Storages { get; set; }
         
     }
 }

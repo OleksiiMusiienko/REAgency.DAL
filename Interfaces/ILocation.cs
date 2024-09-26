@@ -1,4 +1,6 @@
-﻿namespace REAgency.DAL.Interfaces
+﻿using REAgency.DAL.Entities.Locations;
+
+namespace REAgency.DAL.Interfaces
 {
     public interface ILocation<T> where T : class
     {
@@ -8,5 +10,6 @@
         Task Create(T item);
         void Update(T item);
         Task Delete(int id);
+        Task<Location> GetByDateTime(DateTime date);
     }
 }
