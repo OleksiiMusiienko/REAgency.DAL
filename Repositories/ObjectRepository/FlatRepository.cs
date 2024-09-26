@@ -22,15 +22,22 @@ namespace REAgency.DAL.Repositories.ObjectRepository
 
         public async Task<Flat> Get(int id)     
         {
-            var flats = await db.Flats.Include(o => o.estateObject).Where(a => a.Id == id).ToListAsync();
+            var flats = await db.Flats.Include(o => o.estateObject).Include(l => l.estateObject.Location).Where(a => a.Id == id).ToListAsync();
             Flat? fl = flats?.FirstOrDefault();
             return fl!;
+        }
+        public async Task<Flat> GetByEstateObjectId(int id)
+        {
+            var flats = await db.Flats.Include(o => o.estateObject).Include(l => l.estateObject.Location).Where(a => a.estateObjectId == id).ToListAsync();
+            Flat? fl = flats?.FirstOrDefault();
+            return fl!;
+
         }
         public async Task Create(Flat fl)
         {
             await db.Flats.AddAsync(fl);
         }
-        public async void Update(Flat fl)
+        public  void Update(Flat fl)
         {
            db.Entry(fl).State = EntityState.Modified; 
         }

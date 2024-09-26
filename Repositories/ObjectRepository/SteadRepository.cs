@@ -24,6 +24,14 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             Stead? st = steads.FirstOrDefault();
             return st!;
         }
+
+        public async Task<Stead> GetByEstateObjectId(int id)
+        {
+            var steads = await db.Steads.Include(o => o.estateObject).Where(a => a.estateObjectId == id).ToListAsync();
+            Stead? s = steads?.FirstOrDefault();
+            return s!;
+
+        }
         public async Task Create(Stead st)
         {
             await db.Steads.AddAsync(st);

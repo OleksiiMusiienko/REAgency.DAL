@@ -24,6 +24,14 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             Storage? stor = storages.FirstOrDefault();
             return stor!;
         }
+
+        public async Task<Storage> GetByEstateObjectId(int id)
+        {
+            var storeges = await db.Storages.Include(o => o.estateObject).Where(a => a.estateObjectId == id).ToListAsync();
+            Storage? s = storeges?.FirstOrDefault();
+            return s!;
+
+        }
         public async Task Create(Storage stor)
         {
             await db.Storages.AddAsync(stor);

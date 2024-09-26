@@ -24,6 +24,14 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             Parking? pr = parkings.FirstOrDefault();
             return pr!;
         }
+
+        public async Task<Parking> GetByEstateObjectId(int id)
+        {
+            var parking = await db.Parkings.Include(o => o.estateObject).Where(a => a.estateObjectId == id).ToListAsync();
+            Parking? p = parking?.FirstOrDefault();
+            return p!;
+
+        }
         public async Task Create(Parking pr)
         {
             await db.Parkings.AddAsync(pr);

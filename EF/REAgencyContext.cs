@@ -82,6 +82,7 @@ namespace REAgency.DAL.EF
             //}
             //SaveChanges();
         }
+     
     }
     public class SampleContextFactory : IDesignTimeDbContextFactory<REAgencyContext>
     {
