@@ -115,6 +115,13 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             await db.EstateObjects.AddAsync(obj);
         }
+
+        public async Task<EstateObject> GetByDateTime(DateTime date)
+        {
+            var estateObjects = await db.EstateObjects.Where(f => f.Date == date).ToListAsync();
+            EstateObject? estateObject = estateObjects.FirstOrDefault();
+            return estateObject!;
+        }
         public async void Update(EstateObject obj)
         {
             db.Entry(obj).State = EntityState.Modified;

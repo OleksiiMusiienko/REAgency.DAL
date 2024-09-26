@@ -160,6 +160,9 @@ namespace REAgency.DAL.Migrations
                     b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("DistrictId")
                         .HasColumnType("int");
 
@@ -257,7 +260,6 @@ namespace REAgency.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("pathPhoto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("unitAreaId")
@@ -807,7 +809,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Garage", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Garages")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -816,7 +818,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.House", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Houses")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -825,7 +827,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Office", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Offices")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -834,7 +836,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Parking", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Parkings")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -843,7 +845,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Premis", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Premises")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -852,7 +854,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Room", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Rooms")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -861,7 +863,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Stead", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Steads")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -870,7 +872,7 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Object.Storage", b =>
                 {
                     b.HasOne("REAgency.DAL.Entities.Object.EstateObject", "estateObject")
-                        .WithMany("Storages")
+                        .WithMany()
                         .HasForeignKey("estateObjectId");
 
                     b.Navigation("estateObject");
@@ -926,25 +928,6 @@ namespace REAgency.DAL.Migrations
             modelBuilder.Entity("REAgency.DAL.Entities.Locations.Region", b =>
                 {
                     b.Navigation("Districts");
-                });
-
-            modelBuilder.Entity("REAgency.DAL.Entities.Object.EstateObject", b =>
-                {
-                    b.Navigation("Garages");
-
-                    b.Navigation("Houses");
-
-                    b.Navigation("Offices");
-
-                    b.Navigation("Parkings");
-
-                    b.Navigation("Premises");
-
-                    b.Navigation("Rooms");
-
-                    b.Navigation("Steads");
-
-                    b.Navigation("Storages");
                 });
 
             modelBuilder.Entity("REAgency.DAL.Entities.Order", b =>

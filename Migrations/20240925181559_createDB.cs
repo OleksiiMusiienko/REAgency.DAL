@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace REAgency.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class migrations : Migration
+    public partial class createDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -264,7 +264,8 @@ namespace REAgency.DAL.Migrations
                     CountryId = table.Column<int>(type: "int", nullable: true),
                     RegionId = table.Column<int>(type: "int", nullable: true),
                     DistrictId = table.Column<int>(type: "int", nullable: true),
-                    LocalityId = table.Column<int>(type: "int", nullable: true)
+                    LocalityId = table.Column<int>(type: "int", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -311,7 +312,7 @@ namespace REAgency.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    pathPhoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    pathPhoto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     estateType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
