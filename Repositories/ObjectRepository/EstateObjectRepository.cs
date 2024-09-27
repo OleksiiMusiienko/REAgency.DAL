@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using REAgency.DAL.EF;
 using REAgency.DAL.Entities.Object;
+using REAgency.DAL.Entities.Person;
 using REAgency.DAL.Interfaces;
 using REAgencyEnum;
 
@@ -134,6 +135,12 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             EstateObject? obj = await db.EstateObjects.FindAsync(id);
             if (obj != null)
                 db.EstateObjects.Remove(obj);
+        }
+        public async Task UpdatePathFoto(EstateObject estateObject)
+        {
+            var objects = db.EstateObjects.SingleOrDefault(x => x.Id == estateObject.Id);
+            objects.pathPhoto = estateObject.pathPhoto;
+            db.SaveChanges();
         }
     }
 }
