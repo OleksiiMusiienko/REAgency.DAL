@@ -16,7 +16,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<EstateObject>> GetAll()
         {
-            return await db.EstateObjects.ToListAsync();
+            return await db.EstateObjects.Include(c => c.Client).ToListAsync();
         }
         public async Task<EstateObject> Get(int id)
         {
