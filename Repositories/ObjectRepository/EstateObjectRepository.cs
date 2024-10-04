@@ -17,7 +17,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<EstateObject>> GetAll()
         {
-            return await db.EstateObjects.ToListAsync();
+            return await db.EstateObjects.Include(c => c.Client).OrderByDescending(o => o.Date).ToListAsync();
         }
         public async Task<EstateObject> Get(int id)
         {
@@ -26,13 +26,13 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<EstateObject>> GetAllByEmployeeId(int id)
         {
-            var estateObjects = await db.EstateObjects.Where(f => f.employeeId == id).ToListAsync();
+            var estateObjects = await db.EstateObjects.Where(f => f.employeeId == id).OrderByDescending(o => o.Date).ToListAsync();
             return estateObjects;
         }
 
         public async Task<IEnumerable<EstateObject>> GetAllByOperationId(int id)
         {
-            var estateObjects = await db.EstateObjects.Where(f => f.operationId == id).ToListAsync();
+            var estateObjects = await db.EstateObjects.Where(f => f.operationId == id).OrderByDescending(o => o.Date).ToListAsync();
             return estateObjects;
         }
 
@@ -109,7 +109,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
                 estateObjects = estateObjects.Where(eo => eo.Area <= maxArea.Value);
             }
 
-            return await estateObjects.ToListAsync();
+            return await estateObjects.OrderByDescending(o => o.Date).ToListAsync();
         }
 
         public async Task Create(EstateObject obj)
