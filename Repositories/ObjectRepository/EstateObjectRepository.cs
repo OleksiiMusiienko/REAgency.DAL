@@ -112,6 +112,59 @@ namespace REAgency.DAL.Repositories.ObjectRepository
             return await estateObjects.OrderByDescending(o => o.Date).ToListAsync();
         }
 
+        public async Task<IEnumerable<EstateObject>> GetAllByFilteredForAdmin(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+          int? maxPrice, double? minArea, double? maxArea, int? employeeId)
+        {
+            var estateObjects = db.EstateObjects.AsQueryable();
+
+
+            if (typeId != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.estateType == (ObjectType)typeId.Value);
+            }
+
+            if (operationTypeId != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.operationId == operationTypeId.Value);
+            }
+
+            if (employeeId != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.employeeId == employeeId.Value);
+            }
+
+            if (localityId != 0)
+            {
+                estateObjects = (from o in db.EstateObjects
+                                 join l in db.Locations on o.locationId equals l.Id
+                                 where l.LocalityId == localityId
+                                 select o);
+            }
+
+            if (minPrice != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Price >= minPrice.Value);
+            }
+
+            if (maxPrice != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Price <= maxPrice.Value);
+            }
+
+
+            if (minArea != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Area >= minArea.Value);
+            }
+
+            if (maxArea != 0)
+            {
+                estateObjects = estateObjects.Where(eo => eo.Area <= maxArea.Value);
+            }
+
+            return await estateObjects.OrderByDescending(o => o.Date).ToListAsync();
+        }
+
         public async Task Create(EstateObject obj)
         {
             await db.EstateObjects.AddAsync(obj);
