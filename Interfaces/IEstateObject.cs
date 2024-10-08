@@ -19,6 +19,9 @@ namespace REAgency.DAL.Interfaces
         Task<IEnumerable<EstateObject>> GetAllByFiltered(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
             int? maxPrice, double? minArea, double? maxArea);
 
+        Task<IEnumerable<EstateObject>> GetAllByFilteredForAdmin(int? typeId, int? operationTypeId, int? localityId, int? minPrice,
+           int? maxPrice, double? minArea, double? maxArea, int ?employeeId);
+
         Task<IEnumerable<EstateObject>> GetAllByLocalityId(int id);
 
         Task<EstateObject> GetByDateTime(DateTime date);
