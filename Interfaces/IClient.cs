@@ -12,6 +12,8 @@ namespace REAgency.DAL.Interfaces
         Task Create(Client client); // Регистрация пользователя или добавление пользователя сотрудником
 
         void Update(Client client);
+
+        void UpdateNameAndPhone(int id, string name, string phone);
         void UpdatePassword(Client client);
 
         Task Delete(int id);

@@ -28,7 +28,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<Flat> GetByEstateObjectId(int id)
         {
-            var flats = await db.Flats.Include(o => o.estateObject).Include(l => l.estateObject.Location).Where(a => a.estateObjectId == id).ToListAsync();
+            var flats = await db.Flats.Include(o => o.estateObject).Include(c => c.estateObject.Client).Include(l => l.estateObject.Location).Where(a => a.estateObjectId == id).ToListAsync();
             Flat? fl = flats?.FirstOrDefault();
             return fl!;
 

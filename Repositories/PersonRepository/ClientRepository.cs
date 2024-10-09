@@ -65,6 +65,18 @@ namespace REAgency.DAL.Repositories.PersonRepository
         {
             db.Entry(client).State = EntityState.Modified;
         }
+        public void UpdateNameAndPhone(int id, string name, string phone)
+        {
+            var client = db.Clients.Find(id);
+            if (client == null)
+            {
+                throw new Exception("Client not found");
+            }
+
+            client.Name = name;
+            client.Phone1 = phone;
+            db.Entry(client).State = EntityState.Modified;
+        }
         public void UpdatePassword(Client client)
         { 
             var clients= db.Clients.SingleOrDefault(x => x.Id == client.Id);
