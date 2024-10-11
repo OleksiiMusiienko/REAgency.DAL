@@ -36,7 +36,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             await db.Parkings.AddAsync(pr);
         }
-        public async void Update(Parking pr)
+        public void Update(Parking pr)
         {
             db.Entry(pr).State = EntityState.Modified;
         }

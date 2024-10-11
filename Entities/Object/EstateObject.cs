@@ -23,7 +23,7 @@ namespace REAgency.DAL.Entities.Object
         public int locationId { get; set; }
 
         public string Street {  get; set; }
-        public int numberStreet { get; set; }
+        public int numberStreet { get; set; } //сделать стринг так как возможна буква в номере
         public int Price { get; set; }
         public virtual Currency Currency { get; set; }
         public int currencyId { get; set; }

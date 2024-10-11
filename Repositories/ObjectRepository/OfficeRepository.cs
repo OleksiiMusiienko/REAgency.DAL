@@ -34,7 +34,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             await db.Offices.AddAsync(of);
         }
-        public async void Update(Office of)
+        public void Update(Office of)
         {
             db.Entry(of).State = EntityState.Modified;
         }

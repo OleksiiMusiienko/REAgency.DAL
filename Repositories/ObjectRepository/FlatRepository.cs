@@ -37,7 +37,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             await db.Flats.AddAsync(fl);
         }
-        public  void Update(Flat fl)
+        public void Update(Flat fl)
         {
            db.Entry(fl).State = EntityState.Modified; 
         }

@@ -35,7 +35,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             await db.Premises.AddAsync(prms);
         }
-        public async void Update(Premis prms)
+        public void Update(Premis prms)
         {
             db.Entry(prms).State = EntityState.Modified;
         }
