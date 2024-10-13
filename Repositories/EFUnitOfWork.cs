@@ -265,7 +265,15 @@ namespace REAgency.DAL.Repositories
 
         public async Task Save()
         {
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            
         }
 
     }

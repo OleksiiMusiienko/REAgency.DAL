@@ -19,14 +19,14 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<Room> Get(int id)
         {
-            var rooms = await db.Rooms.Include(o => o.estateObject).Where(a => a.Id == id).ToListAsync();
+            var rooms = await db.Rooms.Include(o => o.estateObject).Include(c => c.estateObject.Client).Include(l => l.estateObject.Location).Where(a => a.Id == id).ToListAsync();
             Room? rm = rooms.FirstOrDefault();
             return rm!;
         }
 
         public async Task<Room> GetByEstateObjectId(int id)
         {
-            var rooms = await db.Rooms.Include(o => o.estateObject).Where(a => a.estateObjectId == id).ToListAsync();
+            var rooms = await db.Rooms.Include(o => o.estateObject).Include(c => c.estateObject.Client).Include(l => l.estateObject.Location).Where(a => a.estateObjectId == id).ToListAsync();
             Room? r = rooms?.FirstOrDefault();
             return r!;
 
