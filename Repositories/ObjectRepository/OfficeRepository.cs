@@ -25,7 +25,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<Office> GetByEstateObjectId(int id)
         {
-            var offices = await db.Offices.Include(o => o.estateObject).Where(a => a.estateObjectId == id).ToListAsync();
+            var offices = await db.Offices.Include(o => o.estateObject).Include(c => c.estateObject.Client).Include(l => l.estateObject.Location).Where(a => a.estateObjectId == id).ToListAsync();
             Office? o = offices?.FirstOrDefault();
             return o!;
 
