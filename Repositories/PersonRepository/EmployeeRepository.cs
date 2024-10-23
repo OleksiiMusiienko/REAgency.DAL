@@ -48,7 +48,33 @@ namespace REAgency.DAL.Repositories.PersonRepository
 
         public void Update(Employee employee)
         {
-            db.Entry(employee).State = EntityState.Modified;
+            var employeeById = db.Employees.Find(employee.Id);
+            if (employeeById == null)
+            {
+                throw new Exception("Client not found");
+            }
+
+            employeeById.Name = employee.Name;
+            employeeById.Phone1 = employee.Phone1;
+            employeeById.Email = employee.Email;
+            employeeById.userStatus = employee.userStatus;
+            employeeById.Phone2 = employee.Phone2;
+            employeeById.dateReg = employee.dateReg;           
+            employeeById.adminStatus = employee.adminStatus;
+            employeeById.postId = employee.postId;
+            employeeById.Description = employee.Description;
+            db.Entry(employeeById).State = EntityState.Modified;
+        }
+
+        public void UpdateAvatar(byte[] data, int id)
+        {
+            var employeeById = db.Employees.Find(id);
+            if (employeeById == null)
+            {
+                throw new Exception("Client not found");
+            }
+            employeeById.Avatar = data;
+            db.Entry(employeeById).State = EntityState.Modified;
         }
         public void UpdatePassword(Employee employee)
         {
