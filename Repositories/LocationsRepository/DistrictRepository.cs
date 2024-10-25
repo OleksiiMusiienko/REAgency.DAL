@@ -15,7 +15,7 @@ namespace REAgency.DAL.Repositories.LocationsRepository
         }
         public async Task<IEnumerable<District>> GetAll()
         {
-            return await db.Districts.ToListAsync();
+            return await db.Districts.Include(d => d.Region).ToListAsync();
         }
         public async Task<District> Get(int id)
         {
