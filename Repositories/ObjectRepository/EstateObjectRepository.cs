@@ -164,7 +164,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
 
             return await estateObjects.OrderByDescending(o => o.Date).ToListAsync();
         }
-
+        
         public async Task Create(EstateObject obj)
         {
             await db.EstateObjects.AddAsync(obj);
