@@ -9,6 +9,7 @@ namespace REAgency.DAL.Interfaces
         Task Create(Employee employee); // Это означат что администратор САМ добавляет сотрудников
 
         void Update(Employee employee);
+        void UpdateAvatar(byte[] avatar, int id);
         void UpdatePassword(Employee employee);
 
         Task Delete(int id);
