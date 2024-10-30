@@ -8,6 +8,7 @@
         Task<T> GetByEstateObjectId(int id);
         Task Create(T item);
         void Update(T item);
+        
         Task Delete(int id);
 
     }

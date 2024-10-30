@@ -45,6 +45,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
             db.Entry(gr).State = EntityState.Modified;
         }
+        
         public async Task Delete(int id)
         {
             Garage? gr = await db.Garages.FindAsync(id);

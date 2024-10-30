@@ -28,6 +28,7 @@ namespace REAgency.DAL.Interfaces
         
         Task Create(EstateObject estateObject);
         void Update(EstateObject estateObject);
+        void UpdateCountViews(int id,int count);
         Task Delete(int id);
         Task UpdatePathFoto(EstateObject estateObject);
     }

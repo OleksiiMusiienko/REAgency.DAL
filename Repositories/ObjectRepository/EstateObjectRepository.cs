@@ -178,10 +178,13 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async void Update(EstateObject obj)
         {
-            
              db.Entry(obj).State = EntityState.Modified;
-            
-
+        }
+        public void UpdateCountViews(int id, int count)
+        {
+            var estateObject = db.EstateObjects.SingleOrDefault(x => x.Id == id);
+            estateObject.countViews = count;
+            db.SaveChanges();
         }
         public async Task Delete(int id)
         {

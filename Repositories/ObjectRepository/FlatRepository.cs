@@ -47,6 +47,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         {
            db.Entry(fl).State = EntityState.Modified; 
         }
+     
         public async Task Delete(int id)
         {
             Flat? fl = await db.Flats.FindAsync(id);
