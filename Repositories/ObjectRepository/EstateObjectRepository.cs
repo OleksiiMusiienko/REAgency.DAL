@@ -26,7 +26,7 @@ namespace REAgency.DAL.Repositories.ObjectRepository
         }
         public async Task<IEnumerable<EstateObject>> GetAllByEmployeeId(int id)
         {
-            var estateObjects = await db.EstateObjects.Where(f => f.employeeId == id).OrderByDescending(o => o.Date).ToListAsync();
+            var estateObjects = await db.EstateObjects.Where(f => f.employeeId == id).OrderByDescending(o => o.Date).Include(c => c.Client).ToListAsync();
             return estateObjects;
         }
 
