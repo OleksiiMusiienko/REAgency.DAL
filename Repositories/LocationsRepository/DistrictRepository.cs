@@ -17,6 +17,10 @@ namespace REAgency.DAL.Repositories.LocationsRepository
         {
             return await db.Districts.Include(d => d.Region).ToListAsync();
         }
+        public async Task<IEnumerable<District>> GetLocationById(int id)
+        {
+            return await db.Districts.Where(d => d.RegionId == id).ToListAsync();
+        }
         public async Task<District> Get(int id)
         {
             District? dist = await db.Districts.FindAsync(id);

@@ -17,6 +17,10 @@ namespace REAgency.DAL.Repositories.LocationsRepository
         {
             return await db.Countries.ToListAsync();
         }
+        public async Task<IEnumerable<Country>> GetLocationById(int id)
+        {
+            return null;
+        }
         public async Task<Country> Get(int id)
         {
             Country? ctr = await db.Countries.FindAsync(id);
